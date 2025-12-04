@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useMemo } from 'react';
+import { useState, useMemo, Suspense } from 'react';
 import {
   Box,
   Typography,
@@ -25,6 +25,7 @@ import {
   Tooltip,
   useMediaQuery,
   useTheme as useMuiTheme,
+  CircularProgress,
 } from '@mui/material';
 import {
   Search as SearchIcon,
@@ -111,7 +112,7 @@ const mockUsers = [
   },
 ];
 
-export default function ViewUsersPage() {
+function ViewUsersContent() {
   const { primaryColor, colors, darkMode } = useTheme();
   const muiTheme = useMuiTheme();
   const isMobile = useMediaQuery(muiTheme.breakpoints.down('sm'));
@@ -659,5 +660,28 @@ export default function ViewUsersPage() {
         />
       </TableContainer>
     </Box>
+  );
+}
+
+export default function ViewUsersPage() {
+  const { colors } = useTheme();
+  
+  return (
+    <Suspense
+      fallback={
+        <Box
+          sx={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            minHeight: '50vh',
+          }}
+        >
+          <CircularProgress sx={{ color: colors.text }} />
+        </Box>
+      }
+    >
+      <ViewUsersContent />
+    </Suspense>
   );
 }
