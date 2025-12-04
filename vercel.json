@@ -1,0 +1,7 @@
+{
+  "buildCommand": "cd verifypro && npm run build",
+  "devCommand": "cd verifypro && npm run dev",
+  "installCommand": "cd verifypro && npm install",
+  "framework": "nextjs",
+  "outputDirectory": "verifypro/.next"
+}
