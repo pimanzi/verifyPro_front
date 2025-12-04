@@ -87,20 +87,21 @@ export default function LayoutWrapper({
           }),
         }}
       >
-        <Toolbar>
+        <Toolbar sx={{ px: { xs: 1, sm: 2 } }}>
           <IconButton
             edge="start"
             color="inherit"
             aria-label="menu"
             onClick={handleToggleSidebar}
             sx={{
-              mr: 2,
+              mr: { xs: 1, sm: 2 },
               color: colors.text,
+              ml: { xs: -1, sm: 0 },
             }}
           >
             <MenuIcon />
           </IconButton>
-          <Box sx={{ flexGrow: 1 }}>
+          <Box sx={{ flexGrow: 1, minWidth: 0 }}>
             <Typography
               variant="h6"
               sx={{
