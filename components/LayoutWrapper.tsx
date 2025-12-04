@@ -87,21 +87,20 @@ export default function LayoutWrapper({
           }),
         }}
       >
-        <Toolbar sx={{ minHeight: { xs: 56, sm: 64 }, px: { xs: 1, sm: 2 } }}>
+        <Toolbar>
           <IconButton
             edge="start"
             color="inherit"
             aria-label="menu"
             onClick={handleToggleSidebar}
             sx={{
-              mr: { xs: 0.5, sm: 2 },
+              mr: 2,
               color: colors.text,
-              p: { xs: 1, sm: 1.5 },
             }}
           >
-            <MenuIcon sx={{ fontSize: { xs: '1.25rem', sm: '1.5rem' } }} />
+            <MenuIcon />
           </IconButton>
-          <Box sx={{ flexGrow: 1, minWidth: 0, overflow: 'hidden' }}>
+          <Box sx={{ flexGrow: 1 }}>
             <Typography
               variant="h6"
               sx={{
@@ -109,10 +108,7 @@ export default function LayoutWrapper({
                 fontWeight: 600,
                 fontSize: { xs: '0.875rem', sm: '1.15rem', md: '1.25rem' },
                 color: colors.text,
-                mb: { xs: 0, sm: 0.25 },
-                whiteSpace: 'nowrap',
-                overflow: 'hidden',
-                textOverflow: 'ellipsis',
+                mb: 0.25,
               }}
             >
               <Box
@@ -148,31 +144,22 @@ export default function LayoutWrapper({
           <Stack
             direction="row"
             alignItems="center"
-            spacing={{ xs: 0.25, sm: 2 }}
-            sx={{ flexShrink: 0 }}
+            spacing={{ xs: 0.5, sm: 2 }}
           >
             {/* Dark Mode Toggle */}
-            <Stack
-              direction="row"
-              alignItems="center"
-              spacing={{ xs: 0, sm: 0.5 }}
-            >
+            <Stack direction="row" alignItems="center" spacing={0.5}>
               <LightModeIcon
                 sx={{
-                  fontSize: { xs: '0', sm: '1.1rem', md: '1.3rem' },
+                  fontSize: { xs: '1.1rem', md: '1.3rem' },
                   color: !darkMode ? primaryColor : colors.textSecondary,
                   transition: 'color 0.3s ease',
                   display: { xs: 'none', sm: 'block' },
-                  width: { xs: 0, sm: 'auto' },
-                  height: { xs: 0, sm: 'auto' },
                 }}
               />
               <Switch
                 checked={darkMode}
                 onChange={toggleDarkMode}
-                size="small"
                 sx={{
-                  transform: { xs: 'scale(0.8)', sm: 'scale(1)' },
                   '& .MuiSwitch-switchBase.Mui-checked': {
                     color: primaryColor,
                   },
@@ -183,12 +170,10 @@ export default function LayoutWrapper({
               />
               <DarkModeIcon
                 sx={{
-                  fontSize: { xs: '0', sm: '1.1rem', md: '1.3rem' },
+                  fontSize: { xs: '1.1rem', md: '1.3rem' },
                   color: darkMode ? primaryColor : colors.textSecondary,
                   transition: 'color 0.3s ease',
                   display: { xs: 'none', sm: 'block' },
-                  width: { xs: 0, sm: 'auto' },
-                  height: { xs: 0, sm: 'auto' },
                 }}
               />
             </Stack>
