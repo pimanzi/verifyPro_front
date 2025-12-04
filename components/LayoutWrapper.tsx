@@ -33,6 +33,11 @@ export default function LayoutWrapper({
   });
   const [sidebarOpen, setSidebarOpen] = useState(true); // Desktop: expanded/collapsed, Mobile: show/hide
   const { darkMode, toggleDarkMode, primaryColor, colors } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   // On mobile, close sidebar by default
   useEffect(() => {
@@ -46,6 +51,75 @@ export default function LayoutWrapper({
   const handleToggleSidebar = () => {
     setSidebarOpen(!sidebarOpen);
   };
+
+  // Prevent hydration mismatch by showing simple layout until mounted
+  if (!mounted) {
+    return (
+      <Box
+        sx={{
+          display: 'flex',
+          minHeight: '100vh',
+          backgroundColor: colors.background,
+          transition: 'background-color 0.3s ease',
+        }}
+      >
+        <AppBar
+          position="fixed"
+          sx={{
+            backgroundColor: colors.paper,
+            color: colors.text,
+            boxShadow: darkMode
+              ? '0 1px 3px rgba(0,0,0,0.3)'
+              : '0 1px 3px rgba(0,0,0,0.1)',
+            zIndex: (theme) => theme.zIndex.drawer - 1,
+          }}
+        >
+          <Toolbar sx={{ px: { xs: 1, sm: 2 } }}>
+            <IconButton
+              edge="start"
+              color="inherit"
+              aria-label="menu"
+              sx={{
+                mr: { xs: 1, sm: 2 },
+                ml: { xs: -1, sm: 0 },
+                color: colors.text,
+              }}
+            >
+              <MenuIcon />
+            </IconButton>
+            <Box sx={{ flexGrow: 1, minWidth: 0 }}>
+              <Typography
+                variant="h6"
+                sx={{
+                  fontFamily: 'Poppins, sans-serif',
+                  fontWeight: 600,
+                  fontSize: { xs: '0.875rem', sm: '1.15rem', md: '1.25rem' },
+                  color: colors.text,
+                }}
+              >
+                Welcome to VerifyPro
+              </Typography>
+            </Box>
+          </Toolbar>
+        </AppBar>
+        <Box
+          component="main"
+          sx={{
+            flexGrow: 1,
+            backgroundColor: colors.background,
+            p: { xs: 2, sm: 3, md: 4 },
+            mt: '64px',
+            fontFamily: 'Poppins, sans-serif',
+            transition: 'background-color 0.3s ease',
+            minHeight: 'calc(100vh - 64px)',
+            width: '100%',
+          }}
+        >
+          {children}
+        </Box>
+      </Box>
+    );
+  }
 
   return (
     <Box
