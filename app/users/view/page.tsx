@@ -36,7 +36,7 @@ import {
 import { useTheme } from '@/contexts/ThemeContext';
 import { useSearchParams, useRouter } from 'next/navigation';
 
-// Mock data 
+// Mock data
 const mockUsers = [
   {
     id: 1,
@@ -665,7 +665,7 @@ function ViewUsersContent() {
 
 export default function ViewUsersPage() {
   const { colors } = useTheme();
-  
+
   return (
     <Suspense
       fallback={
