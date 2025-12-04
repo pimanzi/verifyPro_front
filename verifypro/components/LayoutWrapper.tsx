@@ -31,7 +31,7 @@ export default function LayoutWrapper({
   const isMobile = useMediaQuery(muiTheme.breakpoints.down('md'), {
     noSsr: true,
   });
-  const [sidebarOpen, setSidebarOpen] = useState(true); /
+  const [sidebarOpen, setSidebarOpen] = useState(true); // Desktop: expanded/collapsed, Mobile: show/hide
   const { darkMode, toggleDarkMode, primaryColor, colors } = useTheme();
 
   // On mobile, close sidebar by default
